@@ -10,18 +10,18 @@ import com.liuhe.StringUtils;
 
 public class TestStringUtils {
 
-	@Test
+/*	@Test
 	public void testIsBlank(){
 		
 		//断言 真
-		assertTrue(StringUtils.isBlank(""));
+//		assertTrue(StringUtils.isBlank(""));
 		
 	}
 	
 	@Test
 	public void testIsBlank2(){
 		//断言 假
-		assertFalse(StringUtils.isBlank("aaaa"));
+//		assertFalse(StringUtils.isBlank("aaaa"));
 		
 		
 	}
@@ -42,6 +42,6 @@ public class TestStringUtils {
 	public void testStrCn(){
 		
 		
-	}
+	}*/
 	
 }

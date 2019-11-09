@@ -10,13 +10,13 @@ import java.util.List;
 
 public class FileUtils {
 
-	public static List<String> readFile(String fiileName) throws IOException{
+	public static List<String> readFile(String fileName) throws IOException{
 		List<String> lines = new ArrayList<String>();
-		File file = new File(fiileName);
+		File file = new File(fileName);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
 		
 		String str = null;
-		while(reader.readLine()!=null){
+		while((str=reader.readLine())!=null){
 			lines.add(str);
 		}
 		
