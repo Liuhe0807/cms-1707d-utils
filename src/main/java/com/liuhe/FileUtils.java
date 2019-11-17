@@ -13,7 +13,7 @@ public class FileUtils {
 	public static List<String> readFile(String fileName) throws IOException{
 		List<String> lines = new ArrayList<String>();
 		File file = new File(fileName);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"GBK"));
 		
 		String str = null;
 		while((str=reader.readLine())!=null){
@@ -21,6 +21,11 @@ public class FileUtils {
 		}
 		
 		return lines;
+		
+	}
+	
+	
+	public void test(){
 		
 	}
 	
