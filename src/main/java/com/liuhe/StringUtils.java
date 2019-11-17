@@ -123,7 +123,7 @@ public class StringUtils {
 	}
 	
 //	(4)注册资本：调用RandomUtil随机数工具方法生成，值在10万元-10亿元之间（4分）
-	public static int getRandomUtil(){
+	public static int getRandomCapital(){
 		Random ran = new Random();
 		return	(100000 + (ran.nextInt(999900000) * 10));
 		
@@ -131,7 +131,7 @@ public class StringUtils {
 		
 //	(5)营业执照号：调用RandomUtil随机数工具方法生成，以1101开头，加上11位随机数，总共15位。（4分）
 	
-	public static String RandomUtil(String num){
+	public static String RandomReg_no(String num){
 		return	num + 1000 + (int)(Math.random() * 10000000);
 	}
 	
