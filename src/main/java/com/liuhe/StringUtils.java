@@ -123,9 +123,9 @@ public class StringUtils {
 	}
 	
 //	(4)注册资本：调用RandomUtil随机数工具方法生成，值在10万元-10亿元之间（4分）
-	public static int getRandomCapital(){
+	public static String RandomCapital(){
 		Random ran = new Random();
-		return	(100000 + (ran.nextInt(999900000) * 10));
+		return	String.valueOf(100000 + (ran.nextInt(999900000) * 10));
 		
 	}	
 		
