@@ -44,4 +44,12 @@ public class TestStringUtils {
 		
 	}*/
 	
+	@Test
+	public void testUrl(){
+		String url = "www.中国.com";
+		boolean httpUrl = StringUtils.isHttpUrl(url);
+		System.out.println(httpUrl);
+		
+	}
+	
 }
