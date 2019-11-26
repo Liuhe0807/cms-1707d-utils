@@ -1,12 +1,24 @@
 package com.liuhe;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
+
+
+
 public class StringUtils {
+	
+	
 	
 	//判断传入的字符串是否为以http打头的url地址
 	public static boolean isHttpUrl(String urls){

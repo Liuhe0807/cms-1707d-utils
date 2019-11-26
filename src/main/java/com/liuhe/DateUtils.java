@@ -1,14 +1,50 @@
 package com.liuhe;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.multipart.MultipartFile;
 
 public class DateUtils {
 
 	static final long millionSecondsPerDay = 1000*60*60*24;
 	
+	
+	//Logger log = Logger.getLogger(UserController.class);
+	
+	
+	@Value("${upload.path}")
+	String updloadPath;
+	//上传工具类
+	private String processFile(MultipartFile file) throws IllegalStateException, IOException {
+		
+		//log.info("updloadPath is "  + updloadPath);
+    	
+    	//1 求扩展名  "xxx.jpg"
+    	String suffixName =  file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+    	String fileNamePre = UUID.randomUUID().toString();
+    	// 计算出新的文件名称
+    	String fileName = fileNamePre + suffixName;
+    	
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    	String path = dateFormat.format(new Date());
+    	File pathFile  = new File(updloadPath + "/" + path);
+    	if(!pathFile.exists()) {
+    		pathFile.mkdirs();
+    	}
+    	
+    	// 最终的新的文件名称
+    	String newFileName = updloadPath + "/"+ path + "/" + fileName;
+    	file.transferTo(new File(newFileName));
+    	System.out.println("11111111111111111111111"+newFileName);
+    	return path + "/" + fileName ;
+	}
 	
 	public static int compare(Date date1,Date date2){
 		if(date1 == null||date2 == null)
