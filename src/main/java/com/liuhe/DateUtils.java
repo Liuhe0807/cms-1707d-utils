@@ -22,11 +22,12 @@ public class DateUtils {
 	
 	//Logger log = Logger.getLogger(UserController.class);
 	
-	
+	/*
 	@Value("${upload.path}")
-	String updloadPath;
+	static String updloadPath;
+	*/
 	//上传工具类
-	private String processFile(MultipartFile file) throws IllegalStateException, IOException {
+	/*private static String processFile(MultipartFile file,String updloadPath) throws IllegalStateException, IOException {
 		
 		//log.info("updloadPath is "  + updloadPath);
     	
@@ -46,11 +47,10 @@ public class DateUtils {
     	// 最终的新的文件名称
     	String newFileName = updloadPath + "/"+ path + "/" + fileName;
     	file.transferTo(new File(newFileName));
-    	System.out.println("11111111111111111111111"+newFileName);
+    	
     	return path + "/" + fileName ;
 	}
-	
-	/*@Override
+	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
@@ -61,7 +61,51 @@ public class DateUtils {
 		}
 		
 		return true;
+	}
+	
+	private static String u(MultipartFile file,String updloadPath) throws IllegalStateException, IOException {
+		
+		//log.info("updloadPath is "  + updloadPath);
+    	
+    	//1 求扩展名  "xxx.jpg"
+    	String suffixName =  file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+    	String fileNamePre = UUID.randomUUID().toString();
+    	// 计算出新的文件名称
+    	String fileName = fileNamePre + suffixName;
+    	
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    	String path = dateFormat.format(new Date());
+    	File pathFile  = new File(updloadPath + "/" + path);
+    	if(!pathFile.exists()) {
+    		pathFile.mkdirs();
+    	}
+    	
+    	// 最终的新的文件名称
+    	String newFileName = updloadPath + "/"+ path + "/" + fileName;
+    	file.transferTo(new File(newFileName));
+    	
+    	return path + "/" + fileName ;
 	}*/
+	
+	public static String processFile(MultipartFile file,String updloadPath) throws Exception{
+		String suffixName =  file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+    	String fileNamePre = UUID.randomUUID().toString();
+    	// 计算出新的文件名称
+    	String fileName = fileNamePre + suffixName;
+    	
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    	String path = dateFormat.format(new Date());
+    	File pathFile  = new File(updloadPath + "/" + path);
+    	if(!pathFile.exists()) {
+    		pathFile.mkdirs();
+    	}
+    	
+    	// 最终的新的文件名称
+    	String newFileName = updloadPath + "/"+ path + "/" + fileName;
+    	file.transferTo(new File(newFileName));
+    	
+    	return path + "/" + fileName ;
+	}
 	
 	//日期排序
 	public static int compare(Date date1,Date date2){
