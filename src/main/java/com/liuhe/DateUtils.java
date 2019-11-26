@@ -26,31 +26,35 @@ public class DateUtils {
 	@Value("${upload.path}")
 	static String updloadPath;
 	*/
-	//上传工具类
-	/*private static String processFile(MultipartFile file,String updloadPath) throws IllegalStateException, IOException {
+	
+	//计算从开始日期计算到现在的年龄
+	public static int getAge(Date birthday){
+		Calendar now = Calendar.getInstance();
+		//创建日期格式化日历对象
+		//将日期格式化
+		now.setTime(new Date());
 		
-		//log.info("updloadPath is "  + updloadPath);
-    	
-    	//1 求扩展名  "xxx.jpg"
-    	String suffixName =  file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
-    	String fileNamePre = UUID.randomUUID().toString();
-    	// 计算出新的文件名称
-    	String fileName = fileNamePre + suffixName;
-    	
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-    	String path = dateFormat.format(new Date());
-    	File pathFile  = new File(updloadPath + "/" + path);
-    	if(!pathFile.exists()) {
-    		pathFile.mkdirs();
-    	}
-    	
-    	// 最终的新的文件名称
-    	String newFileName = updloadPath + "/"+ path + "/" + fileName;
-    	file.transferTo(new File(newFileName));
-    	
-    	return path + "/" + fileName ;
+		//用户生日
+		Calendar bir = Calendar.getInstance();
+		bir.setTime(birthday);
+		
+		//定义变量
+		int age;
+		//判断生日是不是当前日期之后
+		if(bir.after(now)){
+			throw new RuntimeException("Please enter the correct date of birth");
+		}else{
+			//生日减去当前日期的年 得出年龄
+			age = now.get(Calendar.YEAR) - bir.get(Calendar.YEAR);
+			//判断年龄  DAY_OF_YEAR获取当前日期是今年的第几天  要是大于  就+1
+			if(now.get(Calendar.DAY_OF_YEAR) > bir.get(Calendar.DAY_OF_YEAR)){
+				age += 1;
+			}
+		}
+		return age;
 	}
-	@Override
+	
+	/*@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
@@ -61,32 +65,9 @@ public class DateUtils {
 		}
 		
 		return true;
-	}
-	
-	private static String u(MultipartFile file,String updloadPath) throws IllegalStateException, IOException {
-		
-		//log.info("updloadPath is "  + updloadPath);
-    	
-    	//1 求扩展名  "xxx.jpg"
-    	String suffixName =  file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
-    	String fileNamePre = UUID.randomUUID().toString();
-    	// 计算出新的文件名称
-    	String fileName = fileNamePre + suffixName;
-    	
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-    	String path = dateFormat.format(new Date());
-    	File pathFile  = new File(updloadPath + "/" + path);
-    	if(!pathFile.exists()) {
-    		pathFile.mkdirs();
-    	}
-    	
-    	// 最终的新的文件名称
-    	String newFileName = updloadPath + "/"+ path + "/" + fileName;
-    	file.transferTo(new File(newFileName));
-    	
-    	return path + "/" + fileName ;
 	}*/
 	
+	//上传工具类
 	public static String processFile(MultipartFile file,String updloadPath) throws Exception{
 		String suffixName =  file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
     	String fileNamePre = UUID.randomUUID().toString();
