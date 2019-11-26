@@ -8,8 +8,12 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
+
 
 public class DateUtils {
 
@@ -46,6 +50,20 @@ public class DateUtils {
     	return path + "/" + fileName ;
 	}
 	
+	/*@Override
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler) throws Exception {
+		// TODO Auto-generated method stub
+		Driver login = (Driver) request.getSession().getAttribute("user");
+		if(login==null){
+			request.getRequestDispatcher("/login").forward(request, response);
+			return false;
+		}
+		
+		return true;
+	}*/
+	
+	//日期排序
 	public static int compare(Date date1,Date date2){
 		if(date1 == null||date2 == null)
 			throw new RuntimeException("参数不能为空");
