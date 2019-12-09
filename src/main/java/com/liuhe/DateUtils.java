@@ -63,7 +63,10 @@ public class DateUtils {
 			request.getRequestDispatcher("/login").forward(request, response);
 			return false;
 		}
-		
+		drtiverypte	car_type	1125car	t_driver_type	code	CASCADE	CASCADE	
+
+		code	driver_type	1125car	t_driver_type	code	CASCADE	CASCADE	
+
 		return true;
 	}*/
 	
@@ -97,7 +100,7 @@ public class DateUtils {
 		
 	}
 	
-	//计算年龄
+	//计算年龄生日转年龄
 	public static int claculateAge(Date birthday){
 		if(birthday.compareTo(new Date())>0){
 			throw new RuntimeException("给定的生日不能大于当前日期"+ birthday);
@@ -143,7 +146,18 @@ public class DateUtils {
 		return days;
 		
 	}
-	
+	/*<table>
+
+	<tr>
+	<td>收藏地址：</td>
+	</tr>
+	<tr>
+	<c:forEach items="${list }" var="l">
+
+	<td><a href="">${l.title }</a></td>
+	</c:forEach>
+	</tr>
+	</table>*/
 	//判断是否为今天
 	public static boolean isToday(Date date){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
