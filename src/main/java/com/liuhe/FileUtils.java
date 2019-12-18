@@ -15,10 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class FileUtils {
 
+	//上传文件
 	public static List<String> readFile(String fileName) throws IOException{
 		List<String> lines = new ArrayList<String>();
 		File file = new File(fileName);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"GBK"));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"utf-8"));
 		
 		String str = null;
 		while((str=reader.readLine())!=null){
